@@ -32,6 +32,8 @@ html(lang='en')
     link(rel='stylesheet', type='text/css', href='css/util.css')
     link(rel='stylesheet', type='text/css', href='css/main.css')
     // ===============================================================================================
+    link(rel='stylesheet', type='text/css', href='stylesheets/style.css')
+    
   body.animsition
     // Header
     header.header1
@@ -41,24 +43,25 @@ html(lang='en')
           // Logo
           a.logo(href='index.html')
             h1.logo-header Deepest Discounts
+            p.catchphrase-header One click to find the best deals on Amazon
           // Menu
-          .wrap_menu
-            nav.menu
-              ul.main_menu
-                li
-                  a(href='index.html') Home
-                li
-                  a(href='product.html') Shop
-                li.sale-noti
-                  a(href='product.html') Sale
-                li
-                  a(href='cart.html') Features
-                li
-                  a(href='blog.html') Blog
-                li
-                  a(href='about.html') About
-                li
-                  a(href='contact.html') Contact
+          //- .wrap_menu
+          //-   nav.menu
+          //-     ul.main_menu
+          //-       li
+          //-         a(href='index.html') Home
+          //-       li
+          //-         a(href='product.html') Shop
+          //-       li.sale-noti
+          //-         a(href='product.html') Sale
+          //-       li
+          //-         a(href='cart.html') Features
+          //-       li
+          //-         a(href='blog.html') Blog
+          //-       li
+          //-         a(href='about.html') About
+          //-       li
+          //-         a(href='contact.html') Contact
           // Header Icon
           .header-icons
             .header-wrapicon2
@@ -104,8 +107,9 @@ html(lang='en')
                       | Check Out
       // Header Mobile
       .wrap_header_mobile
-        // Logo moblie
+        // Logo mobile
         a.logo-mobile(href='index.html')
+          h1.mobile-header-text Deepest Discounts
         // Button show menu
         .btn-show-menu
           // Header Icon mobile
@@ -187,16 +191,16 @@ html(lang='en')
                     | All
                 li.p-t-4
                   a.s-text13(href='#')
-                    | Women
+                    | Toys & Games
                 li.p-t-4
                   a.s-text13(href='#')
-                    | Men
+                    | Baby
                 li.p-t-4
                   a.s-text13(href='#')
-                    | Kids
+                    | Electronics
                 li.p-t-4
                   a.s-text13(href='#')
-                    | Accesories
+                    | Clothing, Shoes & Jewelry
               // 
               h4.m-text14.p-b-32
                 | Filters
@@ -215,31 +219,31 @@ html(lang='en')
                     span#value-lower 610
                     |  - $
                     span#value-upper 980
-              .filter-color.p-t-22.p-b-50.bo3
-                .m-text15.p-b-12
-                  | Color
-                ul.flex-w
-                  li.m-r-10
-                    input#color-filter1.checkbox-color-filter(type='checkbox', name='color-filter1')
-                    label.color-filter.color-filter1(for='color-filter1')
-                  li.m-r-10
-                    input#color-filter2.checkbox-color-filter(type='checkbox', name='color-filter2')
-                    label.color-filter.color-filter2(for='color-filter2')
-                  li.m-r-10
-                    input#color-filter3.checkbox-color-filter(type='checkbox', name='color-filter3')
-                    label.color-filter.color-filter3(for='color-filter3')
-                  li.m-r-10
-                    input#color-filter4.checkbox-color-filter(type='checkbox', name='color-filter4')
-                    label.color-filter.color-filter4(for='color-filter4')
-                  li.m-r-10
-                    input#color-filter5.checkbox-color-filter(type='checkbox', name='color-filter5')
-                    label.color-filter.color-filter5(for='color-filter5')
-                  li.m-r-10
-                    input#color-filter6.checkbox-color-filter(type='checkbox', name='color-filter6')
-                    label.color-filter.color-filter6(for='color-filter6')
-                  li.m-r-10
-                    input#color-filter7.checkbox-color-filter(type='checkbox', name='color-filter7')
-                    label.color-filter.color-filter7(for='color-filter7')
+              //- .filter-color.p-t-22.p-b-50.bo3
+              //-   .m-text15.p-b-12
+              //-     | Color
+              //-   ul.flex-w
+              //-     li.m-r-10
+              //-       input#color-filter1.checkbox-color-filter(type='checkbox', name='color-filter1')
+              //-       label.color-filter.color-filter1(for='color-filter1')
+              //-     li.m-r-10
+              //-       input#color-filter2.checkbox-color-filter(type='checkbox', name='color-filter2')
+              //-       label.color-filter.color-filter2(for='color-filter2')
+              //-     li.m-r-10
+              //-       input#color-filter3.checkbox-color-filter(type='checkbox', name='color-filter3')
+              //-       label.color-filter.color-filter3(for='color-filter3')
+              //-     li.m-r-10
+              //-       input#color-filter4.checkbox-color-filter(type='checkbox', name='color-filter4')
+              //-       label.color-filter.color-filter4(for='color-filter4')
+              //-     li.m-r-10
+              //-       input#color-filter5.checkbox-color-filter(type='checkbox', name='color-filter5')
+              //-       label.color-filter.color-filter5(for='color-filter5')
+              //-     li.m-r-10
+              //-       input#color-filter6.checkbox-color-filter(type='checkbox', name='color-filter6')
+              //-       label.color-filter.color-filter6(for='color-filter6')
+              //-     li.m-r-10
+              //-       input#color-filter7.checkbox-color-filter(type='checkbox', name='color-filter7')
+              //-       label.color-filter.color-filter7(for='color-filter7')
               .search-product.pos-relative.bo4.of-hidden
                 input.s-text7.size6.p-l-23.p-r-50(type='text', name='search-product', placeholder='Search Products...')
                 button.flex-c-m.size5.ab-r-m.color2.color0-hov.trans-0-4
@@ -272,9 +276,6 @@ html(lang='en')
                   .block2-img.wrap-pic-w.of-hidden.pos-relative.block2-labelnew
                     img(src='images/item-02.jpg', alt='IMG-PRODUCT')
                     .block2-overlay.trans-0-4
-                      a.block2-btn-addwishlist.hov-pointer.trans-0-4(href='#')
-                        i.icon-wishlist.icon_heart_alt(aria-hidden='true')
-                        i.icon-wishlist.icon_heart.dis-none(aria-hidden='true')
                       .block2-btn-addcart.w-size1.trans-0-4
                         // Button
                         button.flex-c-m.size1.bg4.bo-rad-23.hov1.s-text1.trans-0-4
