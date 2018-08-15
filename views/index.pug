@@ -52,30 +52,9 @@ html(lang='en')
               // Header cart noti
               .header-cart.header-dropdown
                 ul.header-cart-wrapitem
-                  li.header-cart-item
-                    .header-cart-item-img
-                      img(src='images/item-cart-01.jpg', alt='IMG')
-                    .header-cart-item-txt
-                      a.header-cart-item-name(href='#')
-                        | White Shirt With Pleat Detail Back
-                      span.header-cart-item-info
-                        | 1 x $19.00
-                  li.header-cart-item
-                    .header-cart-item-img
-                      img(src='images/item-cart-02.jpg', alt='IMG')
-                    .header-cart-item-txt
-                      a.header-cart-item-name(href='#')
-                        | Converse All Star Hi Black Canvas
-                      span.header-cart-item-info
-                        | 1 x $39.00
-                  li.header-cart-item
-                    .header-cart-item-img
-                      img(src='images/item-cart-03.jpg', alt='IMG')
-                    .header-cart-item-txt
-                      a.header-cart-item-name(href='#')
-                        | Nixon Porter Leather Watch In Tan
-                      span.header-cart-item-info
-                        | 1 x $17.00
+                  include cart-item.pug
+                  include cart-item.pug
+                  include cart-item.pug
                 .header-cart-total
                   | Total: $75.00
                 .header-cart-buttons
@@ -147,13 +126,25 @@ html(lang='en')
             li.item-menu-mobile
               a(href='#') All
             li.item-menu-mobile
-              a(href='#') Toys & Games
+              a(href='#') Appliances
             li.item-menu-mobile
               a(href='#') Baby
             li.item-menu-mobile
-              a(href='#') Electronics
+              a(href='#') Books
+            li.item-menu-mobile
+              a(href='#') Camera & Photo
             li.item-menu-mobile
               a(href='#') Clothing, Shoes & Jewelry
+            li.item-menu-mobile
+              a(href='#') Computers & Accessories
+            li.item-menu-mobile
+              a(href='#') Electronics
+            li.item-menu-mobile
+              a(href='#') Kitchen & Dining
+            li.item-menu-mobile
+              a(href='#') Smart Home
+            li.item-menu-mobile
+              a(href='#') Toys & Games
     // Content page
     section.bgwhite.p-t-55.p-b-65
       .container
@@ -169,16 +160,34 @@ html(lang='en')
                     | All
                 li.p-t-4
                   a.s-text13(href='#')
-                    | Toys & Games
+                    | Appliances
                 li.p-t-4
                   a.s-text13(href='#')
                     | Baby
                 li.p-t-4
                   a.s-text13(href='#')
-                    | Electronics
+                    | Books
+                li.p-t-4
+                  a.s-text13(href='#')
+                    | Camera & Photo
                 li.p-t-4
                   a.s-text13(href='#')
                     | Clothing, Shoes & Jewelry
+                li.p-t-4
+                  a.s-text13(href='#')
+                    | Computers & Accessories
+                li.p-t-4
+                  a.s-text13(href='#')
+                    | Electronics
+                li.p-t-4
+                  a.s-text13(href='#')
+                    | Kitchen & Dining
+                li.p-t-4
+                  a.s-text13(href='#')
+                    | Smart Home
+                li.p-t-4
+                  a.s-text13(href='#')
+                    | Toys & Games
               // 
               .search-product.pos-relative.bo4.of-hidden
                 input.s-text7.size6.p-l-23.p-r-50(type='text', name='search-product', placeholder='Search Products...')
