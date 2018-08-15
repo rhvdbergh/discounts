@@ -7,3 +7,9 @@ h1.mobile-header-text {
     display: none;
   }
 }
+
+@media (min-width: 576px) {
+  h1.mobile-header-text {
+    font-size: 2em;
+  }
+}
