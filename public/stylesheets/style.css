@@ -2,6 +2,8 @@ h1.mobile-header-text {
   font-size: 1.2em;
 }
 
+
+
 @media (max-width: 576px) {
   .categories {
     display: none;
@@ -11,5 +13,23 @@ h1.mobile-header-text {
 @media (min-width: 576px) {
   h1.mobile-header-text {
     font-size: 2em;
+  }
+}
+
+@media (min-width: 992px) {
+  .catchphrase-header {
+    padding-left: 250px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .catchphrase-header {
+    padding-left: 100px;
+  }
+}
+
+@media (min-width: 1660px) {
+  .catchphrase-header {
+    padding-left: 0px;
   }
 }
