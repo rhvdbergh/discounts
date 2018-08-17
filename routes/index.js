@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Deepest Discounts' });
 });
 
 /* GET home page. */
@@ -12,7 +12,7 @@ router.get('/cart.html', function(req, res, next) {
 });
 
 router.get('/cart', function(req, res, next) {
-  res.render('cart', { title: 'Express' });
+  res.render('cart', { title: 'Deepest Discounts: Cart' });
 });
 
 module.exports = router;
