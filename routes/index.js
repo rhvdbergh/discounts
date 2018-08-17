@@ -12,7 +12,7 @@ router.get('/cart.html', function(req, res, next) {
 });
 
 router.get('/cart', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('cart', { title: 'Express' });
 });
 
 module.exports = router;
