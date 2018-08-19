@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
         let products = [];
         for (let i = 0; i < 12; i++) {
           let product = {
-            itemID: json.items[i].itemID,
+            itemId: json.items[i].itemId,
             name: json.items[i].name,
             msrp: json.items[i].msrp,
             salePrice: json.items[i].salePrice,
