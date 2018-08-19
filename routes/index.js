@@ -6,12 +6,12 @@ var fs = require('fs');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  // fetch (`http://api.walmartlabs.com/v1/feeds/clearance?apikey=${process.env.API_KEY}&amp;categoryId=3944`)
-  //   .then(res => res.json())
-  //   .then(json => {
-  //     console.log(json);
+  fetch (`http://api.walmartlabs.com/v1/feeds/clearance?apikey=${process.env.API_KEY}&amp;categoryId=3944`)
+    .then(res => res.json())
+    .then(json => {
+      console.log(json);
 
-  //   });
+    });
 
   // displays clearance
   fetch(`http://api.walmartlabs.com/v1/trends?format=json&apiKey=${process.env.API_KEY}`)

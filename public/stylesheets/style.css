@@ -9,6 +9,8 @@ h1.cart-header {
 
 .strikethrough {
   text-decoration: line-through;
+  color: tomato;
+  padding-right: 20px;
 }
 
 
