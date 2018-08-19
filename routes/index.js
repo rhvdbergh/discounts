@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
     .then(res => res.json())
     .then(json => {
 
-      fs.writeFile('bestsellers.txt', JSON.stringify(json), (err) => {
+      fs.writeFile('/dev/bestsellers.txt', JSON.stringify(json), (err) => {
         if (err) throw err;
         console.log('The file has been saved!');
       });
