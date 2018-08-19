@@ -6,11 +6,11 @@ var fs = require('fs');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  fetch (`http://api.walmartlabs.com/v1/feeds/bestsellers?apikey=${process.env.API_KEY}&amp;categoryId=3944`)
+  fetch (`http://api.walmartlabs.com/v1/feeds/rollback?apikey=${process.env.API_KEY}&amp;categoryId=3944`)
     .then(res => res.json())
     .then(json => {
 
-      fs.writeFile('/dev/bestsellers.txt', JSON.stringify(json), (err) => {
+      fs.writeFile('dev/rollback.txt', JSON.stringify(json), (err) => {
         if (err) throw err;
         console.log('The file has been saved!');
       });

@@ -86,8 +86,9 @@ block content
                   .block2-txt.p-t-20
                     a.block2-name.dis-block.s-text3.p-b-5(href='product-detail.html')
                       | #{product.name}
-                    span.block2-price.m-text6.p-r-5.strikethrough
-                      | $#{product.msrp}
+                    if product.msrp
+                      span.block2-price.m-text6.p-r-5.strikethrough
+                        | $#{product.msrp}
                     span.block2-price.m-text6.p-r-5
                       | $#{product.salePrice}
           // Pagination
