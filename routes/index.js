@@ -6,15 +6,19 @@ var fs = require('fs');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  fetch (`http://api.walmartlabs.com/v1/feeds/clearance?apikey=${process.env.API_KEY}&amp;categoryId=3944`)
+  fetch (`http://api.walmartlabs.com/v1/feeds/bestsellers?apikey=${process.env.API_KEY}&amp;categoryId=3944`)
     .then(res => res.json())
     .then(json => {
-      console.log(json);
+
+      fs.writeFile('bestsellers.txt', JSON.stringify(json), (err) => {
+        if (err) throw err;
+        console.log('The file has been saved!');
+      });
 
     });
 
   // displays clearance
-  fetch(`http://api.walmartlabs.com/v1/trends?format=json&apiKey=${process.env.API_KEY}`)
+  fetch(`http://api.walmartlabs.com/v1/feeds/bestsellers?apikey=${process.env.API_KEY}&amp;categoryId=3944`)
       .then(res => res.json())
       .then(json => {
         let products = [];
