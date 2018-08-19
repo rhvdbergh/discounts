@@ -7,6 +7,10 @@ h1.cart-header {
   text-align: center;
 }
 
+.strikethrough {
+  text-decoration: line-through;
+}
+
 
 @media (max-width: 576px) {
   .categories {
