@@ -99,9 +99,6 @@ router.get('/category/:category', function(req, res, next) {
     case "kitchen": 
         catNum = "4044_623679" 
         break;
-    case "musicalinstruments": 
-        catNum = "7796869"  
-        break;
     case "pets": 
         catNum = "5440" 
         break;
