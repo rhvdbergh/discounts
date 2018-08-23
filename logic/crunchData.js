@@ -1,5 +1,20 @@
 var fetch = require('node-fetch');
 
+function findPositionInSortedArray(discountPercentage, products) {
+
+  let posNotFound = true;
+  let pos = products.length; // unless this discount is larger than any others, it will be the last
+
+  for (i = 0; i < products.length; i++) {
+    if ((discountPercentage > products[i].discountPercentage) && posNotFound) {
+      pos = i;
+      posNotFound = false;
+    }
+  }
+
+  return pos;
+}
+
 function crunchData(category, iterationCount, products, nextPage, callback) {
   
   console.log(iterationCount);
@@ -28,9 +43,23 @@ function crunchData(category, iterationCount, products, nextPage, callback) {
                   mediumImage: json.items[i].mediumImage,
                   largeImage: json.items[i].largeImage,
                   productTrackingUrl: json.items[i].productTrackingUrl,
-                  productUrl: json.items[i].productUrl
+                  productUrl: json.items[i].productUrl,
+                  discountPercentage: 100-(json.items[i].salePrice / json.items[i].msrp * 100)
             }
-            products.push(product);
+
+            // test if product is a better discount than one already in the array
+            if (products.length > 0) { 
+
+              products.splice(findPositionInSortedArray(product.discountPercentage, products), 0, product);
+
+              if (products.length > 120) { // there are more than 120 products, so drop one
+                products.pop();
+              }
+
+            } else { // this must be the first viable product
+              products.push(product);
+            }
+
           }
         }
         }
