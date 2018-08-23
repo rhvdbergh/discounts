@@ -2,8 +2,9 @@ const { crunchData } = require('../logic/crunchData.js');
 
 var express = require('express');
 var router = express.Router();
-var fetch = require('node-fetch');
 var fs = require('fs');
+
+const { categories } = require('../logic/categories.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -16,62 +17,9 @@ router.get('/', function(req, res, next) {
 /* GET category page. */
 router.get('/category/:category', function(req, res, next) {
 
-  let catNum = "NaN";
-  switch (req.params.category) {
-    case "appliances":
-        catNum = "4044_90548";
-        break;
-    case "arts": 
-        catNum = "1334134";
-        break;
-    case "auto":
-        catNum = "91083";
-        break;
-    case "baby": 
-        catNum = "5427"
-        break;
-    case "books": 
-        catNum = "3920" 
-        break;
-    case "clothing": 
-        catNum = "5438" 
-        break;
-    case "computers": 
-        catNum = "3944_3951"
-        break;
-    case "electronics": 
-        catNum = "3944" 
-        break;
-    case "games": 
-        catNum = "4171_4191"  
-        break;
-    case "health": 
-        catNum = "976760" 
-        break;
-    case "home": 
-        catNum = "4044" 
-        break;
-    case "jewelry": 
-        catNum = "3891" 
-        break;
-    case "kitchen": 
-        catNum = "4044_623679" 
-        break;
-    case "pets": 
-        catNum = "5440" 
-        break;
-    case "smarthome": 
-        catNum = "3944_1229875"  
-        break;
-    case "sports":
-        catNum = "4125";
-        break;
-    case "toys":
-        catNum = "4171";
-        break;
-  }
+  let catNum = categories[req.params.category];
 
-  if (catNum !== "NaN") {
+  if (catNum !== undefined) {
     crunchData(catNum, 5, [], undefined, (products) => res.render('index', { title: 'Deepest Discounts', products: products }));
 
   } else res.redirect('/');
