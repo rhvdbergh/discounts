@@ -9,7 +9,7 @@ var fs = require('fs');
 router.get('/', function(req, res, next) {
 
   // displays jewelry by default
-  crunchData(3891, 0, [], undefined, (products) => res.render('index', { title: 'Deepest Discounts', products: products }));
+  crunchData(3891, 5, [], undefined, (products) => res.render('index', { title: 'Deepest Discounts', products: products }));
   
 });
 
@@ -72,7 +72,7 @@ router.get('/category/:category', function(req, res, next) {
   }
 
   if (catNum !== "NaN") {
-    crunchData(catNum, 0, [], undefined, (products) => res.render('index', { title: 'Deepest Discounts', products: products }));
+    crunchData(catNum, 5, [], undefined, (products) => res.render('index', { title: 'Deepest Discounts', products: products }));
 
   } else res.redirect('/');
 });

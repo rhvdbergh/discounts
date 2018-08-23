@@ -1,6 +1,9 @@
 var fetch = require('node-fetch');
 
-function crunchData(category, viableCount, products, nextPage, callback) {
+function crunchData(category, iterationCount, products, nextPage, callback) {
+  
+  console.log(iterationCount);
+  iterationCount--;
 
   let urlToFetch = nextPage ? 
       `http://api.walmartlabs.com${nextPage}`
@@ -14,8 +17,6 @@ function crunchData(category, viableCount, products, nextPage, callback) {
         if ((json.items[i].msrp && json.items[i].salePrice) && json.items[i].availableOnline && (json.items[i].stock === 'Available')) {
           if ((json.items[i].msrp > json.items[i].salePrice) && (json.items[i].msrp !== 0) && (json.items[i].msrp !== 9999)) {
             if (100-(json.items[i].salePrice / json.items[i].msrp * 100) >= 50) {
-            viableCount++;
-
             let product = {
                   itemId: json.items[i].itemId,
                   name: json.items[i].name,
@@ -35,10 +36,10 @@ function crunchData(category, viableCount, products, nextPage, callback) {
         }
       }
 
-      if(viableCount > 120) {
+      if(iterationCount < 1) {
         callback(products);
       } else {
-        crunchData(category, viableCount, products, json.nextPage, callback);
+        crunchData(category, iterationCount, products, json.nextPage, callback);
       }
     });
 
