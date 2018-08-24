@@ -1,4 +1,5 @@
 const { crunchData } = require('../logic/crunchData.js');
+const { retrieveProducts } = require('../logic/retrieve.js');
 
 var express = require('express');
 var router = express.Router();
@@ -10,8 +11,10 @@ const { categories } = require('../logic/categories.js');
 router.get('/', function(req, res, next) {
 
   // displays jewelry by default
-  crunchData(3891, 5, [], undefined, (products) => res.render('index', { title: 'Deepest Discounts', products: products }));
-  
+  // crunchData(3891, 5, [], undefined, (products) => res.render('index', { title: 'Deepest Discounts', products: products }));
+  retrieveProducts('3891', (retrievedProducts) => {
+    res.render('index', { title: 'Deepest Discounts', products: retrievedProducts });
+  });
 });
 
 /* GET category page. */
@@ -20,8 +23,9 @@ router.get('/category/:category', function(req, res, next) {
   let catNum = categories[req.params.category];
 
   if (catNum !== undefined) {
-    crunchData(catNum, 5, [], undefined, (products) => res.render('index', { title: 'Deepest Discounts', products: products }));
-
+    retrieveProducts(catNum, (retrievedProducts) => {
+      res.render('index', { title: 'Deepest Discounts', products: retrievedProducts });
+    });
   } else res.redirect('/');
 });
 
