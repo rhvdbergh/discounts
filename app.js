@@ -4,12 +4,24 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var mongoose = require('mongoose');
+
 const { updateDB } = require('./logic/updateDB.js');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+// set up mongoose connection
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/discounts');
+var db = mongoose.connection;
+db.on('error', () => { console.log('There was an error connecting to the database.')});
+db.once('open', () => {
+  console.log('Database discounts successfully connected.');
+  db.dropCollection('products');
+  console.log('Collection "products" dropped.')
+});
 
 // update database
 updateDB();
