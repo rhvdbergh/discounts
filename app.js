@@ -23,8 +23,14 @@ db.once('open', () => {
   console.log('Collection "products" dropped.')
 });
 
-// update database
+// update database when application starts
 updateDB();
+
+// update the database every day
+setInterval(() => {
+  db.dropCollection('products');
+  updateDB();
+}, 1000 * 60 * 60 * 24);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
