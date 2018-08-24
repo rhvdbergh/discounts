@@ -33,6 +33,8 @@ function crunchData(category, iterationCount, products, nextPage, callback) {
           if ((json.items[i].msrp > json.items[i].salePrice) && (json.items[i].msrp !== 0) && (json.items[i].msrp !== 9999)) {
             if (100-(json.items[i].salePrice / json.items[i].msrp * 100) >= 50) {
             let product = {
+
+                  category: category,
                   itemId: json.items[i].itemId,
                   name: json.items[i].name,
                   upc: json.items[i].upc,
