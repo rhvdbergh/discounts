@@ -43,7 +43,8 @@ router.get('/category/:category/:pageNum', function(req, res, next) {
         numProducts: numProducts,
         pageNum: pageNum,
         showingProductStart: showingProductStart,
-        showingProductEnd: showingProductEnd
+        showingProductEnd: showingProductEnd,
+        category: req.params.category
       });
     });
   } else res.redirect('/');

@@ -108,8 +108,8 @@ block content
             while n < `${numProducts / 24}`
               - n++
               if n == `${pageNum}` 
-                a.item-pagination.flex-c-m.trans-0-4.active-pagination(href='#') #{n}
+                a.item-pagination.flex-c-m.trans-0-4.active-pagination(href=`/category/${category}/${n}`) #{n}
               else
-                a.item-pagination.flex-c-m.trans-0-4(href='#') #{n}
+                a.item-pagination.flex-c-m.trans-0-4(href=`/category/${category}/${n}`) #{n}
               //- #{n++}
   include footer.pug
