@@ -21,8 +21,15 @@ router.get('/', function(req, res, next) {
   });
 });
 
-/* GET category page. */
+/* GET category page - reroute to pageNum 1. */
 router.get('/category/:category', function(req, res, next) {
+
+  res.redirect(`/category/${req.params.category}/1`);
+
+});
+
+/* GET category page. */
+router.get('/category/:category/:pageNum', function(req, res, next) {
 
   let catNum = categories[req.params.category];
 
