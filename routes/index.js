@@ -10,7 +10,7 @@ const { categories } = require('../logic/categories.js');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  res.redirect(`/category/jewelry/1`);
+  res.redirect(`/category/clearance/1`);
   
 });
 
@@ -25,6 +25,9 @@ router.get('/category/:category', function(req, res, next) {
 router.get('/category/:category/:pageNum', function(req, res, next) {
 
   let catNum = categories[req.params.category];
+  if (req.params.category === 'clearance') {
+    catNum = '1111';
+  }
   let pageNum = req.params.pageNum;
   let showingProductEnd = pageNum * 24;
   let showingProductStart = ((pageNum - 1) * 24) + 1;
@@ -34,7 +37,8 @@ router.get('/category/:category/:pageNum', function(req, res, next) {
      
       // redirect if pageNum was too large
       if (redirectToFirstPage && numProducts !== 0) {
-      res.redirect(`/category/${req.params.category}/1`);
+        console.log('Redirecting to first page ... page number was too high.');
+        res.redirect(`/category/${req.params.category}/1`);
         }
      
       res.render('index', { 
