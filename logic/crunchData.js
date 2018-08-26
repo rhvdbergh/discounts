@@ -56,7 +56,7 @@ function crunchData(category, iterationCount, products, nextPage, callback) {
 
               products.splice(findPositionInSortedArray(product.discountPercentage, products), 0, product);
 
-              if (products.length > 200) { // there are more than 200 products, so drop one
+              if (products.length > 240) { // there are more than 200 products, so drop one
                 products.pop();
               }
 
