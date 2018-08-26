@@ -7,7 +7,7 @@ const Product = require('../models/product.js');
 
 function recursiveCrunching(categoryPos, categoryArray) {
 
-  crunchData(categories[categoryArray[categoryPos]], 1, [], undefined, (products) => {
+  crunchData(categories[categoryArray[categoryPos]], 15, [], undefined, (products) => {
 
     console.log('Now at category', categoryPos, 'which is', categories[categoryArray[categoryPos]]);
 
