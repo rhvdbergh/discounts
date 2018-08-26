@@ -104,6 +104,12 @@ block content
                       | $#{product.salePrice}
           // Pagination
           .pagination.flex-m.flex-w.p-t-26
-            a.item-pagination.flex-c-m.trans-0-4.active-pagination(href='#') 1
-            a.item-pagination.flex-c-m.trans-0-4(href='#') 2
+            - var n = 0
+            while n < `${numProducts / 24}`
+              - n++
+              if n == `${pageNum}` 
+                a.item-pagination.flex-c-m.trans-0-4.active-pagination(href='#') #{n}
+              else
+                a.item-pagination.flex-c-m.trans-0-4(href='#') #{n}
+              //- #{n++}
   include footer.pug

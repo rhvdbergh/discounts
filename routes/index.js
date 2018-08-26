@@ -41,6 +41,7 @@ router.get('/category/:category/:pageNum', function(req, res, next) {
         title: 'Deepest Discounts', 
         products: retrievedProducts, 
         numProducts: numProducts,
+        pageNum: pageNum,
         showingProductStart: showingProductStart,
         showingProductEnd: showingProductEnd
       });
