@@ -1,5 +1,6 @@
 var fetch = require('node-fetch');
 
+// helper method to make sure the array remains sorted
 function findPositionInSortedArray(discountPercentage, products) {
 
   let posNotFound = true;
@@ -54,7 +55,7 @@ function crunchData(category, iterationCount, products, nextPage, callback) {
 
               products.splice(findPositionInSortedArray(product.discountPercentage, products), 0, product);
 
-              if (products.length > 120) { // there are more than 120 products, so drop one
+              if (products.length > 200) { // there are more than 200 products, so drop one
                 products.pop();
               }
 
