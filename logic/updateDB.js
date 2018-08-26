@@ -8,35 +8,71 @@ const mongoose = require('mongoose');
 const Product = require('../models/product.js');
 
 // constants to change functionality
-const numIterations = 1;
+const numIterations = 15;
 
-function retrieveClearanceProducts() {
-  fetch(`http://api.walmartlabs.com/v1/feeds/clearance?apikey=${process.env.API_KEY}&amp;categoryId=3944`)
+function retrieveBestsellerProducts() {
+  console.log('Now updating bestsellers.')
+  fetch(`http://api.walmartlabs.com/v1/feeds/bestsellers?apikey=${process.env.API_KEY}&amp;categoryId=3944`)
     .then(res => res.json())
     .then(json => {
-      for (let i = 0; i < json.items.length; i++) {
+      for (let i = 0; i < json.items.length; i++) 
+        if ((json.items[i].msrp && json.items[i].salePrice) && json.items[i].availableOnline && (json.items[i].stock === 'Available')) {
+        {
 
-        Product.create({ 
+          Product.create({ 
 
-          category: 1111,
-          itemId: json.items[i].itemId,
-          name: json.items[i].name,
-          upc: json.items[i].upc,
-          msrp: json.items[i].msrp,
-          salePrice: json.items[i].salePrice,
-          shortDescription: json.items[i].shortDescription,
-          thumbnailImage: json.items[i].thumbnailImage,
-          mediumImage: json.items[i].mediumImage,
-          largeImage: json.items[i].largeImage,
-          productTrackingUrl: json.items[i].productTrackingUrl,
-          productUrl: json.items[i].productUrl,
-          discountPercentage: 100-(json.items[i].salePrice / json.items[i].msrp * 100)
+            category: 9999,
+            itemId: json.items[i].itemId,
+            name: json.items[i].name,
+            upc: json.items[i].upc,
+            msrp: json.items[i].msrp,
+            salePrice: json.items[i].salePrice,
+            shortDescription: json.items[i].shortDescription,
+            thumbnailImage: json.items[i].thumbnailImage,
+            mediumImage: json.items[i].mediumImage,
+            largeImage: json.items[i].largeImage,
+            productTrackingUrl: json.items[i].productTrackingUrl,
+            productUrl: json.items[i].productUrl,
+            discountPercentage: 100-(json.items[i].salePrice / json.items[i].msrp * 100)
 
-        }); // end Product.create
+          }); // end Product.create
+        } // end if
       } // end for
 
       console.log('Products updated successfully.');
-
+      
+    });
+  }
+  
+  function retrieveClearanceProducts() {
+    
+    fetch(`http://api.walmartlabs.com/v1/feeds/clearance?apikey=${process.env.API_KEY}&amp;categoryId=3944`)
+    .then(res => res.json())
+    .then(json => {
+      for (let i = 0; i < json.items.length; i++) {
+        if ((json.items[i].msrp && json.items[i].salePrice) && json.items[i].availableOnline && (json.items[i].stock === 'Available')) {
+        
+          Product.create({ 
+            
+            category: 1111,
+            itemId: json.items[i].itemId,
+            name: json.items[i].name,
+            upc: json.items[i].upc,
+            msrp: json.items[i].msrp,
+            salePrice: json.items[i].salePrice,
+            shortDescription: json.items[i].shortDescription,
+            thumbnailImage: json.items[i].thumbnailImage,
+            mediumImage: json.items[i].mediumImage,
+            largeImage: json.items[i].largeImage,
+            productTrackingUrl: json.items[i].productTrackingUrl,
+            productUrl: json.items[i].productUrl,
+            discountPercentage: 100-(json.items[i].salePrice / json.items[i].msrp * 100)
+            
+          }); // end Product.create
+        } // end if
+      } // end for
+      console.log('Clearance products updated.');
+      retrieveBestsellerProducts();
     });
 }
 

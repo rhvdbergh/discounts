@@ -19,7 +19,7 @@ var db = mongoose.connection;
 db.on('error', () => { console.log('There was an error connecting to the database.')});
 db.once('open', () => {
   console.log('Database discounts successfully connected.');
-  // db.dropCollection('products');
+ // db.dropCollection('products');
   console.log('Collection "products" dropped.')
 });
 

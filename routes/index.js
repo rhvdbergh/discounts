@@ -28,6 +28,10 @@ router.get('/category/:category/:pageNum', function(req, res, next) {
   if (req.params.category === 'clearance') {
     catNum = '1111';
   }
+  if (req.params.category === 'bestsellers') {
+    catNum = '9999';
+  }
+  
   let pageNum = req.params.pageNum;
   let showingProductEnd = pageNum * 24;
   let showingProductStart = ((pageNum - 1) * 24) + 1;
