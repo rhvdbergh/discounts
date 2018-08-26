@@ -24,7 +24,7 @@ db.once('open', () => {
 });
 
 // update database when application starts
-//updateDB();
+// updateDB();
 
 // update the database every day
 setInterval(() => {
