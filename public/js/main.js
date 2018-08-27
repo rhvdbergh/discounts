@@ -201,4 +201,27 @@
         $('.video-mo-01').css('opacity','0');
     });
 
+    // Find category to highlight and highlight
+    const url = window.location.href;
+    if (url.includes('clearance')) { $('a[href="/category/clearance"]').addClass('active-category') }
+    if (url.includes('bestsellers')) { $('a[href="/category/bestsellers"]').addClass('active-category') }
+    if (url.includes('appliances')) { $('a[href="/category/appliances"]').addClass('active-category') }
+    if (url.includes('auto')) { $('a[href="/category/auto"]').addClass('active-category') }
+    if (url.includes('baby')) { $('a[href="/category/baby"]').addClass('active-category') }
+    if (url.includes('clothing')) { $('a[href="/category/clothing"]').addClass('active-category') }
+    if (url.includes('computers')) { $('a[href="/category/computers"]').addClass('active-category') }
+    if (url.includes('electronics')) { $('a[href="/category/electronics"]').addClass('active-category') }
+    if (url.includes('games')) { $('a[href="/category/games"]').addClass('active-category') }
+    if (url.includes('health')) { $('a[href="/category/health"]').addClass('active-category') }
+    if (url.includes('home')) { $('a[href="/category/home"]').addClass('active-category') }
+    if (url.includes('jewelry')) { $('a[href="/category/jewelry"]').addClass('active-category') }
+    if (url.includes('kitchen')) { $('a[href="/category/kitchen"]').addClass('active-category') }
+    if (url.includes('pets')) { $('a[href="/category/pets"]').addClass('active-category') }
+    if (url.includes('smarthome')) { $('a[href="/category/smarthome"]').addClass('active-category') }
+    if (url.includes('sports')) { $('a[href="/category/sports"]').addClass('active-category') }
+    if (url.includes('toys')) { $('a[href="/category/toys"]').addClass('active-category') }
+
+
+    
+
 })(jQuery);

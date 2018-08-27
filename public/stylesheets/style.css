@@ -14,6 +14,15 @@ h1.cart-header {
   font-size: 14px;
 }
 
+.active-category {
+  font-size: 18px;
+  color: #e65540
+}
+
+a.s-text13:hover {
+  font-size: 18px;
+}
+
 
 @media (max-width: 576px) {
   .categories {
