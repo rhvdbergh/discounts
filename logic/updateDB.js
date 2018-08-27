@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const Product = require('../models/product.js');
 
 // constants to change functionality
-const numIterations = 15;
+const numIterations = 1;
 
 function retrieveBestsellerProducts() {
   console.log('Now updating bestsellers.')
@@ -27,7 +27,7 @@ function retrieveBestsellerProducts() {
             upc: json.items[i].upc,
             msrp: json.items[i].msrp,
             salePrice: json.items[i].salePrice,
-            dollarDifference: json.items[i].msrp - json.items[i],salePrice,
+            dollarDifference: json.items[i].msrp - json.items[i].salePrice,
             shortDescription: json.items[i].shortDescription,
             thumbnailImage: json.items[i].thumbnailImage,
             mediumImage: json.items[i].mediumImage,
@@ -61,7 +61,7 @@ function retrieveBestsellerProducts() {
             upc: json.items[i].upc,
             msrp: json.items[i].msrp,
             salePrice: json.items[i].salePrice,
-            dollarDifference: json.items[i].msrp - json.items[i],salePrice,
+            dollarDifference: json.items[i].msrp - json.items[i].salePrice,
             shortDescription: json.items[i].shortDescription,
             thumbnailImage: json.items[i].thumbnailImage,
             mediumImage: json.items[i].mediumImage,

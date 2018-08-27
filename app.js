@@ -13,23 +13,32 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+// consts for development
+const testing = true; // database will not be updated!!
+
 // set up mongoose connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/discounts');
 var db = mongoose.connection;
 db.on('error', () => { console.log('There was an error connecting to the database.')});
 db.once('open', () => {
   console.log('Database discounts successfully connected.');
- // db.dropCollection('products');
+  if (!(testing)) {
+    db.dropCollection('products');
+  }
   console.log('Collection "products" dropped.')
 });
 
 // update database when application starts
-// updateDB();
+if (!(testing)) {
+  updateDB();
+}
 
 // update the database every day
 setInterval(() => {
-  db.dropCollection('products');
-  updateDB();
+  if(!(testing)) {
+    db.dropCollection('products');
+    updateDB();
+  }
 }, 1000 * 60 * 60 * 24);
 
 // view engine setup
