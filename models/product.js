@@ -13,6 +13,7 @@ var ProductsSchema = new Schema({
     upc: { type: String },
     msrp: { type: Number },
     salePrice: { type: Number },
+    dollarDifference: { type: Number },
     shortDescription: { type: String },
     thumbnailImage: { type: String },
     mediumImage: { type: String },

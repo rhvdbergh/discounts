@@ -47,6 +47,7 @@ function crunchData(category, iterationCount, products, nextPage, callback) {
                   upc: json.items[i].upc,
                   msrp: json.items[i].msrp,
                   salePrice: json.items[i].salePrice,
+                  dollarDifference: json.items[i].msrp - json.items[i],salePrice,
                   shortDescription: json.items[i].shortDescription,
                   thumbnailImage: json.items[i].thumbnailImage,
                   mediumImage: json.items[i].mediumImage,
