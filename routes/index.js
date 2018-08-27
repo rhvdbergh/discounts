@@ -1,4 +1,3 @@
-const { crunchData } = require('../logic/crunchData.js');
 const { retrieveProducts } = require('../logic/retrieve.js');
 
 var express = require('express');
@@ -35,9 +34,10 @@ router.get('/category/:category/:pageNum', function(req, res, next) {
   let pageNum = req.params.pageNum;
   let showingProductEnd = pageNum * 24;
   let showingProductStart = ((pageNum - 1) * 24) + 1;
+  let sortOrder = 0;
 
   if (catNum !== undefined) {
-    retrieveProducts(catNum, pageNum, (retrievedProducts, numProducts, redirectToFirstPage) => {
+    retrieveProducts(catNum, pageNum, sortOrder, (retrievedProducts, numProducts, redirectToFirstPage) => {
      
       // redirect if pageNum was too large
       if (redirectToFirstPage && numProducts !== 0) {

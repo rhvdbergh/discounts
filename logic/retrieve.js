@@ -1,6 +1,6 @@
 const Product = require('../models/product.js');
 
-function retrieveProducts(retrieveCategory, pageNum, callback) {
+function retrieveProducts(retrieveCategory, pageNum, sortOrder, callback) {
   Product.countDocuments({ category: retrieveCategory })
     .then((numProducts) => {  
 
