@@ -25,14 +25,15 @@ router.get('/category/:category/:priceRange/:sortOrder/:pageNum', function(req, 
   }
   
   let pageNum = req.params.pageNum;
-  let showingProductEnd = pageNum * 24;
-  let showingProductStart = ((pageNum - 1) * 24) + 1;
   let sortOrder = req.params.sortOrder;
   let priceRange = req.params.priceRange;
 
   if (catNum !== undefined) {
     retrieveProducts(catNum, pageNum, priceRange, sortOrder, (retrievedProducts, numProducts, redirectToFirstPage) => {
      
+      let showingProductEnd = (pageNum - 1) * 24 + (numProducts % 24);
+      let showingProductStart = ((pageNum - 1) * 24) + 1;
+
       // redirect if pageNum was too large
       if (redirectToFirstPage && numProducts !== 0) {
         console.log('Redirecting to first page ... page number was too high.');
