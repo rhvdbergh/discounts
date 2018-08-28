@@ -27,7 +27,7 @@ router.get('/category/:category/:sortOrder/:pageNum', function(req, res, next) {
   let pageNum = req.params.pageNum;
   let showingProductEnd = pageNum * 24;
   let showingProductStart = ((pageNum - 1) * 24) + 1;
-  let sortOrder = 0;
+  let sortOrder = req.params.sortOrder;
 
   if (catNum !== undefined) {
     retrieveProducts(catNum, pageNum, sortOrder, (retrievedProducts, numProducts, redirectToFirstPage) => {

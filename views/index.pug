@@ -73,12 +73,15 @@ block content
           .flex-sb-m.flex-w.p-b-35
             .flex-w
               .rs2-select2.bo4.of-hidden.w-size12.m-t-5.m-b-5.m-r-10
-                select.selection-2(name='sorting')
-                  option Default Sorting
-                  option Biggest discount by %
-                  option Biggest discount by $
+                select.selection-2.sorting(name='sorting')
+                  if 0 == `${sortOrder}`
+                    option Biggest discount by %
+                    option Biggest discount by $
+                  else
+                    option Biggest discount by $
+                    option Biggest discount by %
               .rs2-select2.bo4.of-hidden.w-size12.m-t-5.m-b-5.m-r-10
-                select.selection-2(name='sorting')
+                select.selection-2.price(name='price')
                   option Price
                   option $0.00 - $20.00
                   option $20.00 - $50.00

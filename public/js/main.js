@@ -202,26 +202,48 @@
     });
 
     // Find category to highlight and highlight
-    const url = window.location.href;
-    if (url.includes('clearance')) { $('a[href="/category/clearance"]').addClass('active-category') }
-    if (url.includes('bestsellers')) { $('a[href="/category/bestsellers"]').addClass('active-category') }
-    if (url.includes('appliances')) { $('a[href="/category/appliances"]').addClass('active-category') }
-    if (url.includes('auto')) { $('a[href="/category/auto"]').addClass('active-category') }
-    if (url.includes('baby')) { $('a[href="/category/baby"]').addClass('active-category') }
-    if (url.includes('clothing')) { $('a[href="/category/clothing"]').addClass('active-category') }
-    if (url.includes('computers')) { $('a[href="/category/computers"]').addClass('active-category') }
-    if (url.includes('electronics')) { $('a[href="/category/electronics"]').addClass('active-category') }
-    if (url.includes('games')) { $('a[href="/category/games"]').addClass('active-category') }
-    if (url.includes('health')) { $('a[href="/category/health"]').addClass('active-category') }
-    if (url.includes('home')) { $('a[href="/category/home"]').addClass('active-category') }
-    if (url.includes('jewelry')) { $('a[href="/category/jewelry"]').addClass('active-category') }
-    if (url.includes('kitchen')) { $('a[href="/category/kitchen"]').addClass('active-category') }
-    if (url.includes('pets')) { $('a[href="/category/pets"]').addClass('active-category') }
-    if (url.includes('smarthome')) { $('a[href="/category/smarthome"]').addClass('active-category') }
-    if (url.includes('sports')) { $('a[href="/category/sports"]').addClass('active-category') }
-    if (url.includes('toys')) { $('a[href="/category/toys"]').addClass('active-category') }
+    let url = window.location.href;
+    if (url.includes('clearance')) { $('a[href*="/category/clearance"]').addClass('active-category') }
+    if (url.includes('bestsellers')) { $('a[href*="/category/bestsellers"]').addClass('active-category') }
+    if (url.includes('appliances')) { $('a[href*="/category/appliances"]').addClass('active-category') }
+    if (url.includes('auto')) { $('a[href*="/category/auto"]').addClass('active-category') }
+    if (url.includes('baby')) { $('a[href*="/category/baby"]').addClass('active-category') }
+    if (url.includes('clothing')) { $('a[href*="/category/clothing"]').addClass('active-category') }
+    if (url.includes('computers')) { $('a[href*="/category/computers"]').addClass('active-category') }
+    if (url.includes('electronics')) { $('a[href*="/category/electronics"]').addClass('active-category') }
+    if (url.includes('games')) { $('a[href*="/category/games"]').addClass('active-category') }
+    if (url.includes('health')) { $('a[href*="/category/health"]').addClass('active-category') }
+    if (url.includes('home')) { $('a[href*="/category/home"]').addClass('active-category') }
+    if (url.includes('jewelry')) { $('a[href*="/category/jewelry"]').addClass('active-category') }
+    if (url.includes('kitchen')) { $('a[href*="/category/kitchen"]').addClass('active-category') }
+    if (url.includes('pets')) { $('a[href*="/category/pets"]').addClass('active-category') }
+    if (url.includes('smarthome')) { $('a[href*="/category/smarthome"]').addClass('active-category') }
+    if (url.includes('sports')) { $('a[href*="/category/sports"]').addClass('active-category') }
+    if (url.includes('toys')) { $('a[href*="/category/toys"]').addClass('active-category') }
 
+    // change sort order
+    const $sortBox = $('.sorting');
 
-    
+      // find the position of the last /, the sort order is the number just before; either 0 or 1
+    const sortOrderPosition = url.lastIndexOf('/') - 1; 
+
+    const currentSortOrder = url[sortOrderPosition];
+
+    let newUrl = url;
+
+    $sortBox.change(() => {
+      // if ($sortBox)
+      let sortBoxText = $('.sorting option:selected').text();
+
+      if (sortBoxText.includes('%') && !(currentSortOrder === '0')) {
+        newUrl = url.substr(0, sortOrderPosition) + '0' + '/1';     
+        window.location.href = newUrl;
+      }
+
+      if (sortBoxText.includes('$') && !(currentSortOrder === '1')) {
+        newUrl = url.substr(0, sortOrderPosition) + '1' + '/1';     
+        window.location.href = newUrl;
+      }
+    });
 
 })(jQuery);
