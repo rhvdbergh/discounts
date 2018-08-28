@@ -12,8 +12,6 @@ function retrieveProducts(retrieveCategory, pageNum, sortOrder, callback) {
         redirectToFirstPage = true;
       }
 
-      console.log('inside retrieve, the sort order is', sortOrder);
-
       if (sortOrder === '1') {
         Product.find({ category: retrieveCategory })
               .sort({dollarDifference: -1})
