@@ -149,57 +149,6 @@
     })
 
 
-    /*[ Block2 button wishlist ]
-    ===========================================================*/
-    $('.block2-btn-addwishlist').on('click', function(e){
-        e.preventDefault();
-        $(this).addClass('block2-btn-towishlist');
-        $(this).removeClass('block2-btn-addwishlist');
-        $(this).off('click');
-    });
-
-    /*[ +/- num product ]
-    ===========================================================*/
-    $('.btn-num-product-down').on('click', function(e){
-        e.preventDefault();
-        var numProduct = Number($(this).next().val());
-        if(numProduct > 1) $(this).next().val(numProduct - 1);
-    });
-
-    $('.btn-num-product-up').on('click', function(e){
-        e.preventDefault();
-        var numProduct = Number($(this).prev().val());
-        $(this).prev().val(numProduct + 1);
-    });
-
-
-    /*[ Show content Product detail ]
-    ===========================================================*/
-    $('.active-dropdown-content .js-toggle-dropdown-content').toggleClass('show-dropdown-content');
-    $('.active-dropdown-content .dropdown-content').slideToggle('fast');
-
-    $('.js-toggle-dropdown-content').on('click', function(){
-        $(this).toggleClass('show-dropdown-content');
-        $(this).parent().find('.dropdown-content').slideToggle('fast');
-    });
-
-
-    /*[ Play video 01]
-    ===========================================================*/
-    var srcOld = $('.video-mo-01').children('iframe').attr('src');
-
-    $('[data-target="#modal-video-01"]').on('click',function(){
-        $('.video-mo-01').children('iframe')[0].src += "&autoplay=1";
-
-        setTimeout(function(){
-            $('.video-mo-01').css('opacity','1');
-        },300);      
-    });
-
-    $('[data-dismiss="modal"]').on('click',function(){
-        $('.video-mo-01').children('iframe')[0].src = srcOld;
-        $('.video-mo-01').css('opacity','0');
-    });
 
     /* Find category to highlight and highlight
     ===========================================================*/
