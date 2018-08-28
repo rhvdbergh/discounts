@@ -9,19 +9,12 @@ const { categories } = require('../logic/categories.js');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  res.redirect(`/category/clearance/1`);
+  res.redirect(`/category/clearance/0/1`);
   
 });
 
-/* GET category page - reroute to pageNum 1. */
-router.get('/category/:category', function(req, res, next) {
-
-  res.redirect(`/category/${req.params.category}/1`);
-
-});
-
 /* GET category page. */
-router.get('/category/:category/:pageNum', function(req, res, next) {
+router.get('/category/:category/:sortOrder/:pageNum', function(req, res, next) {
 
   let catNum = categories[req.params.category];
   if (req.params.category === 'clearance') {
@@ -52,7 +45,8 @@ router.get('/category/:category/:pageNum', function(req, res, next) {
         pageNum: pageNum,
         showingProductStart: showingProductStart,
         showingProductEnd: showingProductEnd,
-        category: req.params.category
+        category: req.params.category,
+        sortOrder: sortOrder
       });
     });
   } else res.redirect('/');
