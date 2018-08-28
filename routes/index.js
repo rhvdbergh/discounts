@@ -32,7 +32,7 @@ router.get('/category/:category/:priceRange/:sortOrder/:pageNum', function(req, 
     retrieveProducts(catNum, pageNum, priceRange, sortOrder, (retrievedProducts, numProducts, redirectToFirstPage) => {
      
       let showingProductEnd = pageNum * 24;
-      if (numProducts < 24) {
+      if (numProducts < 24 || (pageNum * 24) - numProducts > 0) {
         showingProductEnd = (pageNum - 1) * 24 + (numProducts % 24);
       }
       let showingProductStart = ((pageNum - 1) * 24) + 1;
