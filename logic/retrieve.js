@@ -11,8 +11,22 @@ function retrieveProducts(retrieveCategory, pageNum, sortOrder, callback) {
       if (amountToSkip >= numProducts) {
         redirectToFirstPage = true;
       }
-      Product.find({ category: retrieveCategory }).skip(amountToSkip).limit(24)
+
+      if (sortOrder === 1) {
+        Product.find({ category: retrieveCategory })
+              .sort({discountPercentage: -1})
+              .skip(amountToSkip)
+              .limit(24)
         .then((products) => callback(products, numProducts, redirectToFirstPage));
+      
+      } else {  
+      // default sort order is by percentage; sortOrder === 0
+      Product.find({ category: retrieveCategory })
+              .sort({dollarDifference: -1})
+              .skip(amountToSkip)
+              .limit(24)
+        .then((products) => callback(products, numProducts, redirectToFirstPage));
+      } // end if ... else
     });
 }
 
