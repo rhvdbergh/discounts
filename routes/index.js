@@ -9,12 +9,12 @@ const { categories } = require('../logic/categories.js');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  res.redirect(`/category/clearance/0/1`);
+  res.redirect(`/category/clearance/0/0/1`);
   
 });
 
 /* GET category page. */
-router.get('/category/:category/:sortOrder/:pageNum', function(req, res, next) {
+router.get('/category/:category/:priceRange/:sortOrder/:pageNum', function(req, res, next) {
 
   let catNum = categories[req.params.category];
   if (req.params.category === 'clearance') {
@@ -28,9 +28,10 @@ router.get('/category/:category/:sortOrder/:pageNum', function(req, res, next) {
   let showingProductEnd = pageNum * 24;
   let showingProductStart = ((pageNum - 1) * 24) + 1;
   let sortOrder = req.params.sortOrder;
+  let priceRange = req.params.priceRange;
 
   if (catNum !== undefined) {
-    retrieveProducts(catNum, pageNum, sortOrder, (retrievedProducts, numProducts, redirectToFirstPage) => {
+    retrieveProducts(catNum, pageNum, priceRange, sortOrder, (retrievedProducts, numProducts, redirectToFirstPage) => {
      
       // redirect if pageNum was too large
       if (redirectToFirstPage && numProducts !== 0) {
@@ -46,7 +47,8 @@ router.get('/category/:category/:sortOrder/:pageNum', function(req, res, next) {
         showingProductStart: showingProductStart,
         showingProductEnd: showingProductEnd,
         category: req.params.category,
-        sortOrder: sortOrder
+        sortOrder: sortOrder,
+        priceRange: priceRange
       });
     });
   } else res.redirect('/');
