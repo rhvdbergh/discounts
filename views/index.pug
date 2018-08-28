@@ -13,55 +13,55 @@ block content
               | Categories
             ul.p-b-54.categories
               li.p-t-4
-                a.s-text13(href=`/category/clearance/${sortOrder}/1`)
+                a.s-text13(href=`/category/clearance/${priceRange}/${sortOrder}/1`)
                   | Clearance 
               li.p-t-4
-                a.s-text13(href=`/category/bestsellers/${sortOrder}/1`)
+                a.s-text13(href=`/category/bestsellers/${priceRange}/${sortOrder}/1`)
                   | Bestsellers 
               li.p-t-4
-                a.s-text13(href=`/category/appliances/${sortOrder}/1`)
+                a.s-text13(href=`/category/appliances/${priceRange}/${sortOrder}/1`)
                   | Appliances 
               li.p-t-4
-                a.s-text13(href=`/category/auto/${sortOrder}/1`)
+                a.s-text13(href=`/category/auto/${priceRange}/${sortOrder}/1`)
                   | Auto & Tires
               li.p-t-4
-                a.s-text13(href=`/category/baby/${sortOrder}/1`)
+                a.s-text13(href=`/category/baby/${priceRange}/${sortOrder}/1`)
                   | Baby
               li.p-t-4
-                a.s-text13(href=`/category/clothing/${sortOrder}/1`)
+                a.s-text13(href=`/category/clothing/${priceRange}/${sortOrder}/1`)
                   | Clothing & Shoes
               li.p-t-4
-                a.s-text13(href=`/category/computers/${sortOrder}/1`)
+                a.s-text13(href=`/category/computers/${priceRange}/${sortOrder}/1`)
                   | Computers
               li.p-t-4
-                a.s-text13(href=`/category/electronics/${sortOrder}/1`)
+                a.s-text13(href=`/category/electronics/${priceRange}/${sortOrder}/1`)
                   | Electronics
               li.p-t-4
-                a.s-text13(href=`/category/games/${sortOrder}/1`)
+                a.s-text13(href=`/category/games/${priceRange}/${sortOrder}/1`)
                   | Games & Puzzles
               li.p-t-4
-                a.s-text13(href=`/category/health/${sortOrder}/1`)
+                a.s-text13(href=`/category/health/${priceRange}/${sortOrder}/1`)
                   | Health
               li.p-t-4
-                a.s-text13(href=`/category/home/${sortOrder}/1`)
+                a.s-text13(href=`/category/home/${priceRange}/${sortOrder}/1`)
                   | Home
               li.p-t-4
-                a.s-text13(href=`/category/jewelry/${sortOrder}/1`)
+                a.s-text13(href=`/category/jewelry/${priceRange}/${sortOrder}/1`)
                   | Jewelry
               li.p-t-4
-                a.s-text13(href=`/category/kitchen/${sortOrder}/1`)
+                a.s-text13(href=`/category/kitchen/${priceRange}/${sortOrder}/1`)
                   | Kitchen & Dining
               li.p-t-4
-                a.s-text13(href=`/category/pets/${sortOrder}/1`)
+                a.s-text13(href=`/category/pets/${priceRange}/${sortOrder}/1`)
                   | Pets
               li.p-t-4
-                a.s-text13(href=`/category/smarthome/${sortOrder}/1`)
+                a.s-text13(href=`/category/smarthome/${priceRange}/${sortOrder}/1`)
                   | Smart Home
               li.p-t-4
-                a.s-text13(href=`/category/sports/${sortOrder}/1`)
+                a.s-text13(href=`/category/sports/${priceRange}/${sortOrder}/1`)
                   | Sports & Outdoors
               li.p-t-4
-                a.s-text13(href=`/category/toys/${sortOrder}/1`)
+                a.s-text13(href=`/category/toys/${priceRange}/${sortOrder}/1`)
                   | Toys
             // 
             .search-product.pos-relative.bo4.of-hidden
@@ -82,12 +82,48 @@ block content
                     option Biggest discount by %
               .rs2-select2.bo4.of-hidden.w-size12.m-t-5.m-b-5.m-r-10
                 select.selection-2.price(name='price')
-                  option Price
-                  option $0.00 - $20.00
-                  option $20.00 - $50.00
-                  option $50.00 - $100.00
-                  option $100.00 - $200.00
-                  option $200.00+
+                  if `${priceRange}` == 0  
+                    option Price
+                    option $0.00 - $20.00
+                    option $20.00 - $50.00
+                    option $50.00 - $100.00
+                    option $100.00 - $200.00
+                    option $200.00+
+                  if `${priceRange}` == 1  
+                    option $0.00 - $20.00
+                    option No Price Limit
+                    option $20.00 - $50.00
+                    option $50.00 - $100.00
+                    option $100.00 - $200.00
+                    option $200.00+
+                  if `${priceRange}` == 2 
+                    option $20.00 - $50.00
+                    option No Price Limit
+                    option $0.00 - $20.00
+                    option $50.00 - $100.00
+                    option $100.00 - $200.00
+                    option $200.00+
+                  if `${priceRange}` == 3 
+                    option $50.00 - $100.00
+                    option No Price Limit
+                    option $0.00 - $20.00
+                    option $20.00 - $50.00
+                    option $100.00 - $200.00
+                    option $200.00+
+                  if `${priceRange}` == 4
+                    option $100.00 - $200.00
+                    option No Price Limit
+                    option $0.00 - $20.00
+                    option $20.00 - $50.00
+                    option $50.00 - $100.00
+                    option $200.00+
+                  if `${priceRange}` == 5  
+                    option $200.00+
+                    option No Price Limit
+                    option $0.00 - $20.00
+                    option $20.00 - $50.00
+                    option $50.00 - $100.00
+                    option $100.00 - $200.00
             span.s-text8.p-t-5.p-b-5
               | Showing #{showingProductStart}-#{showingProductEnd} of #{numProducts} results
           // Product
@@ -117,8 +153,8 @@ block content
             while n < `${numProducts / 24}`
               - n++
               if n == `${pageNum}` 
-                a.item-pagination.flex-c-m.trans-0-4.active-pagination(href=`/category/${category}/${sortOrder}/${n}`) #{n}
+                a.item-pagination.flex-c-m.trans-0-4.active-pagination(href=`/category/${category}/${priceRange}/${sortOrder}/${n}`) #{n}
               else
-                a.item-pagination.flex-c-m.trans-0-4(href=`/category/${category}/${sortOrder}/${n}`) #{n}
+                a.item-pagination.flex-c-m.trans-0-4(href=`/category/${category}/${priceRange}/${sortOrder}/${n}`) #{n}
               //- #{n++}
   include footer.pug

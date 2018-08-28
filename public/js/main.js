@@ -201,7 +201,8 @@
         $('.video-mo-01').css('opacity','0');
     });
 
-    // Find category to highlight and highlight
+    /* Find category to highlight and highlight
+    ===========================================================*/
     let url = window.location.href;
     if (url.includes('clearance')) { $('a[href*="/category/clearance"]').addClass('active-category') }
     if (url.includes('bestsellers')) { $('a[href*="/category/bestsellers"]').addClass('active-category') }
@@ -221,27 +222,61 @@
     if (url.includes('sports')) { $('a[href*="/category/sports"]').addClass('active-category') }
     if (url.includes('toys')) { $('a[href*="/category/toys"]').addClass('active-category') }
 
-    // change sort order
+     /* Change sort order
+    ===========================================================*/
     const $sortBox = $('.sorting');
-
-      // find the position of the last /, the sort order is the number just before; either 0 or 1
+    // find the position of the last /, the sort order is the number just before; either 0 or 1
     const sortOrderPosition = url.lastIndexOf('/') - 1; 
-
     const currentSortOrder = url[sortOrderPosition];
-
+    const priceRangePosition = url.lastIndexOf('/') - 3; 
+    const currentPriceRange = url[priceRangePosition];
     let newUrl = url;
 
     $sortBox.change(() => {
-      // if ($sortBox)
+
       let sortBoxText = $('.sorting option:selected').text();
 
       if (sortBoxText.includes('%') && !(currentSortOrder === '0')) {
-        newUrl = url.substr(0, sortOrderPosition) + '0' + '/1';     
+        newUrl = url.substr(0, sortOrderPosition) + `0` + '/1';     
         window.location.href = newUrl;
       }
 
       if (sortBoxText.includes('$') && !(currentSortOrder === '1')) {
-        newUrl = url.substr(0, sortOrderPosition) + '1' + '/1';     
+        newUrl = url.substr(0, sortOrderPosition) + `1` + '/1';     
+        window.location.href = newUrl;
+      }
+    });
+
+    /* Change price range
+    ===========================================================*/
+    const $priceBox = $('.price');
+
+    $priceBox.change(() => {
+      
+      let priceRangeText = $('.price option:selected').text();
+
+      if (priceRangeText.includes('Price') && !(currentPriceRange === '0')) {
+        newUrl = url.substr(0, priceRangePosition) + `0/${currentSortOrder}` + '/1';     
+        window.location.href = newUrl;
+      }
+      if (priceRangeText.includes('$0.00') && !(currentPriceRange === '1')) {
+        newUrl = url.substr(0, priceRangePosition) + `1/${currentSortOrder}` + '/1';     
+        window.location.href = newUrl;
+      }
+      if (priceRangeText.includes('$20.00 -') && !(currentPriceRange === '2')) {
+        newUrl = url.substr(0, priceRangePosition) + `2/${currentSortOrder}` + '/1';     
+        window.location.href = newUrl;
+      }
+      if (priceRangeText.includes('$50.00 -') && !(currentPriceRange === '3')) {
+        newUrl = url.substr(0, priceRangePosition) + `3/${currentSortOrder}` + '/1';     
+        window.location.href = newUrl;
+      }
+      if (priceRangeText.includes('$100.00 -') && !(currentPriceRange === '4')) {
+        newUrl = url.substr(0, priceRangePosition) + `4/${currentSortOrder}` + '/1';     
+        window.location.href = newUrl;
+      }
+      if (priceRangeText.includes('$200.00+') && !(currentPriceRange === '5')) {
+        newUrl = url.substr(0, priceRangePosition) + `5/${currentSortOrder}` + '/1';     
         window.location.href = newUrl;
       }
     });

@@ -37,7 +37,7 @@ router.get('/category/:category/:priceRange/:sortOrder/:pageNum', function(req, 
       // redirect if pageNum was too large
       if (redirectToFirstPage && numProducts !== 0) {
         console.log('Redirecting to first page ... page number was too high.');
-        res.redirect(`/category/${req.params.category}/${sortOrder}/1`);
+        res.redirect(`/category/${req.params.category}/${priceRange}/${sortOrder}/1`);
         }
      
       res.render('index', { 
