@@ -12,9 +12,11 @@ function retrieveProducts(retrieveCategory, pageNum, sortOrder, callback) {
         redirectToFirstPage = true;
       }
 
-      if (sortOrder === 1) {
+      console.log('inside retrieve, the sort order is', sortOrder);
+
+      if (sortOrder === '1') {
         Product.find({ category: retrieveCategory })
-              .sort({discountPercentage: -1})
+              .sort({dollarDifference: -1})
               .skip(amountToSkip)
               .limit(24)
         .then((products) => callback(products, numProducts, redirectToFirstPage));
@@ -22,7 +24,7 @@ function retrieveProducts(retrieveCategory, pageNum, sortOrder, callback) {
       } else {  
       // default sort order is by percentage; sortOrder === 0
       Product.find({ category: retrieveCategory })
-              .sort({dollarDifference: -1})
+              .sort({discountPercentage: -1})
               .skip(amountToSkip)
               .limit(24)
         .then((products) => callback(products, numProducts, redirectToFirstPage));
