@@ -38,13 +38,13 @@ a.s-text13:hover {
 
 @media (min-width: 992px) {
   .catchphrase-header {
-    padding-left: 250px;
+    padding-left: 400px;
   }
 }
 
 @media (min-width: 1200px) {
   .catchphrase-header {
-    padding-left: 100px;
+    padding-left: 200px;
   }
 }
 
