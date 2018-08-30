@@ -14,7 +14,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 // consts for development
-const testing = true; // database will not be updated!!
+const testing = false; // database will not be updated!!
 
 // set up mongoose connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/discounts');
