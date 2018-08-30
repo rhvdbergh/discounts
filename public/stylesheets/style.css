@@ -7,6 +7,15 @@ h1.cart-header {
   text-align: center;
 }
 
+footer a:visited, footer a:link, footer {
+  color: #212529;
+  text-align: center;
+}
+
+footer a:hover {
+  color: tomato;
+}
+
 .strikethrough {
   text-decoration: line-through;
   color: tomato;

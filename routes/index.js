@@ -44,7 +44,7 @@ router.get('/category/:category/:priceRange/:sortOrder/:pageNum', function(req, 
         }
      
       res.render('index', { 
-        title: 'Deepest Discounts', 
+        title: 'DeepestDiscounts.net', 
         products: retrievedProducts, 
         numProducts: numProducts,
         pageNum: pageNum,
