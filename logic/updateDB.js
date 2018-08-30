@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const Product = require('../models/product.js');
 
 // constants to change functionality
-const numIterations = 1;
+const numIterations = 20;
 
 function retrieveBestsellerProducts() {
   console.log('Now updating bestsellers.')
