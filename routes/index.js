@@ -58,13 +58,4 @@ router.get('/category/:category/:priceRange/:sortOrder/:pageNum', function(req, 
   } else res.redirect('/');
 });
 
-/* GET cart page. */
-router.get('/cart.html', function(req, res, next) {
-  res.redirect('/cart');
-});
-
-router.get('/cart', function(req, res, next) {
-  res.render('cart', { title: 'Deepest Discounts: Cart' });
-});
-
 module.exports = router;
