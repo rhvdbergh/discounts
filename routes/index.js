@@ -36,6 +36,9 @@ router.get('/category/:category/:priceRange/:sortOrder/:pageNum', function(req, 
         showingProductEnd = (pageNum - 1) * 24 + (numProducts % 24);
       }
       let showingProductStart = ((pageNum - 1) * 24) + 1;
+      if (numProducts === 0) {
+        showingProductStart =0;
+      }
 
       // redirect if pageNum was too large
       if (redirectToFirstPage && numProducts !== 0) {
