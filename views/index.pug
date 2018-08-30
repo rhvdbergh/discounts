@@ -153,7 +153,6 @@ block content
                 a.item-pagination.flex-c-m.trans-0-4(href=`/category/${category}/${priceRange}/${sortOrder}/${n}`) #{n}
               //- #{n++}
           // No product to display
-          if `${numProducts}` === 0
-            .row
-              p There are no products available in this category at present. We might be updating our database ... please try again in a few minutes.
+          if `${numProducts}` == 0
+            p There are no products available in this category at present. We might be updating our database ... please try again in a few minutes.
   include footer.pug
