@@ -128,7 +128,12 @@ block content
                 // Block2
                 .block2
                   .block2-img.wrap-pic-w.of-hidden.pos-relative
-                    img(src=`${product.largeImage}`, alt='IMG-PRODUCT')
+                    if product.largeImage
+                      img(src=`${product.largeImage}`, alt=`${product.name}`)
+                    else if product.mediumImage
+                      img(src=`${product.mediumImage}`, alt=`${product.name}`)
+                    else
+                      img(src='/images/item-02.jpg', alt=`${product.name}`)
                     .block2-overlay.trans-0-4
                       .block2-btn-addcart.w-size1.trans-0-4
                         // Button
