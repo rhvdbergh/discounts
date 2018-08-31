@@ -9,7 +9,7 @@ const { categories } = require('../logic/categories.js');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  res.redirect(`/category/bestsellers/0/0/1`);
+  res.redirect(`/category/jewelry/0/0/1`);
   
 });
 
