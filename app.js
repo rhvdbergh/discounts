@@ -13,6 +13,9 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+process.env['FLIP_FLOP'] = true; // set a flip-flop boolean to distinguish old and new db entries
+
+console.log(process.env.FLIP_FLOP);
 // consts for development
 const testing = false; // database will not be updated!!
 
@@ -23,7 +26,7 @@ db.on('error', () => { console.log('There was an error connecting to the databas
 db.once('open', () => {
   console.log('Database discounts successfully connected.');
   if (!(testing)) {
-    db.dropCollection('products');
+    db.dropCollection('products'); // drop products at startup
   }
   console.log('Collection "products" dropped.')
 });

@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const Product = require('../models/product.js');
 
 // constants to change functionality
-const numIterations = 20;
+const numIterations = 1;
 
 function retrieveBestsellerProducts() {
   console.log('Now updating bestsellers.')
@@ -34,11 +34,15 @@ function retrieveBestsellerProducts() {
             largeImage: json.items[i].largeImage,
             productTrackingUrl: json.items[i].productTrackingUrl,
             productUrl: json.items[i].productUrl,
-            discountPercentage: 100-(json.items[i].salePrice / json.items[i].msrp * 100)
+            discountPercentage: 100-(json.items[i].salePrice / json.items[i].msrp * 100),
+            oldNewFlipFlop: process.env.FLIP_FLOP
 
           }); // end Product.create
         } // end if
       } // end for
+
+      Product.deleteMany({ oldNewFlipFlop: !(process.env.FLIP_FLOP) }); // delete all old entries from db
+      process.env['FLIP_FLOP'] = !(process.env.FLIP_FLOP);
 
       console.log('Products updated successfully.');
       
@@ -68,7 +72,8 @@ function retrieveBestsellerProducts() {
             largeImage: json.items[i].largeImage,
             productTrackingUrl: json.items[i].productTrackingUrl,
             productUrl: json.items[i].productUrl,
-            discountPercentage: 100-(json.items[i].salePrice / json.items[i].msrp * 100)
+            discountPercentage: 100-(json.items[i].salePrice / json.items[i].msrp * 100),
+            oldNewFlipFlop: process.env.FLIP_FLOP
             
           }); // end Product.create
         } // end if
@@ -104,7 +109,9 @@ function recursiveCrunching(categoryPos, categoryArray) {
           largeImage: product.largeImage,
           productTrackingUrl: product.productTrackingUrl,
           productUrl: product.productUrl,
-          discountPercentage: product.discountPercentage
+          discountPercentage: product.discountPercentage,
+          oldNewFlipFlop: process.env.FLIP_FLOP
+
         }); // end Product.create()
     }); // end forEach
     categoryPos++;

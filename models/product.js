@@ -20,7 +20,8 @@ var ProductsSchema = new Schema({
     largeImage: { type: String },   
     productTrackingUrl: { type: String },
     productUrl: { type: String },    
-    discountPercentage: { type: Number }
+    discountPercentage: { type: Number },
+    oldNewFlipFlop: { type: Boolean } // distinguishes old and new by alternating
 });
 
 module.exports = mongoose.model("Products", ProductsSchema);
