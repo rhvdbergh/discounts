@@ -11,7 +11,7 @@ let today = new Date();
 let flipFlop = 0;
 
 // constants to change functionality
-const numIterations = 20;
+const numIterations = 1;
 
 function retrieveBestsellerProducts() {
   console.log('Now updating bestsellers.')
@@ -62,47 +62,6 @@ function retrieveBestsellerProducts() {
     });
   }
   
-  function retrieveClearanceProducts() {
-    
-    fetch(`http://api.walmartlabs.com/v1/feeds/clearance?apikey=${process.env.API_KEY}&amp;categoryId=3944`)
-    .then(res => res.json())
-    .then(json => {
-      for (let i = 0; i < json.items.length; i++) {
-        if ((json.items[i].msrp && json.items[i].salePrice) && json.items[i].availableOnline && (json.items[i].stock === 'Available')) {
-        
-          Product.create({ 
-            
-            category: 1111,
-            itemId: json.items[i].itemId,
-            name: json.items[i].name,
-            upc: json.items[i].upc,
-            msrp: json.items[i].msrp,
-            salePrice: json.items[i].salePrice,
-            dollarDifference: json.items[i].msrp - json.items[i].salePrice,
-            shortDescription: json.items[i].shortDescription,
-            thumbnailImage: json.items[i].thumbnailImage,
-            mediumImage: json.items[i].mediumImage,
-            largeImage: json.items[i].largeImage,
-            productTrackingUrl: json.items[i].productTrackingUrl,
-            productUrl: json.items[i].productUrl,
-            discountPercentage: 100-(json.items[i].salePrice / json.items[i].msrp * 100),
-            oldNewFlipFlop: flipFlop
-            
-          }); // end Product.create
-        } // end if
-      } // end for
-      console.log('Clearance products updated.');
-      
-      if (flipFlop === 0) {
-        Product.deleteMany({ category: 1111, oldNewFlipFlop: 1 }, (err) => {});
-      } else {
-        Product.deleteMany({ category: 1111, oldNewFlipFlop: 0 }, (err) => {});
-      }
-
-      retrieveBestsellerProducts();
-    });
-}
-
 function recursiveCrunching(categoryPos, categoryArray) {
 
   crunchData(categories[categoryArray[categoryPos]], numIterations, [], undefined, (products) => {
@@ -143,9 +102,9 @@ function recursiveCrunching(categoryPos, categoryArray) {
     }
   
     if (categoryPos >= categoryArray.length) {
-      // now update clearance products
-      console.log('Now updating clearance products.');
-      retrieveClearanceProducts();
+      // now update bestseller products
+      console.log('Now updating bestseller products.');
+      retrieveBestsellerProducts();
     } else {
       recursiveCrunching(categoryPos, categoryArray);
     }
