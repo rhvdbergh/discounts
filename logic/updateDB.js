@@ -7,6 +7,9 @@ const { categories } = require('./categories.js');
 const mongoose = require('mongoose');
 const Product = require('../models/product.js');
 
+let today = new Date();
+let flipFlop = 0;
+
 // constants to change functionality
 const numIterations = 20;
 
@@ -34,13 +37,27 @@ function retrieveBestsellerProducts() {
             largeImage: json.items[i].largeImage,
             productTrackingUrl: json.items[i].productTrackingUrl,
             productUrl: json.items[i].productUrl,
-            discountPercentage: 100-(json.items[i].salePrice / json.items[i].msrp * 100)
+            discountPercentage: 100-(json.items[i].salePrice / json.items[i].msrp * 100),
+            oldNewFlipFlop: flipFlop
 
           }); // end Product.create
         } // end if
       } // end for
 
       console.log('Products updated successfully.');
+
+      console.log('Starting deletion, date is: ', today);
+      console.log('Starting deletion, flipFlop is:', flipFlop);
+
+      if (flipFlop === 0) {
+        flipFlop = 1;
+      } else {
+        flipFlop = 0;
+      }
+
+      Product.deleteMany({ category: 9999, oldNewFlipFlop: flipFlop }, (err) => {});
+
+      console.log('flipFlop after deletion:', flipFlop);
       
     });
   }
@@ -68,12 +85,20 @@ function retrieveBestsellerProducts() {
             largeImage: json.items[i].largeImage,
             productTrackingUrl: json.items[i].productTrackingUrl,
             productUrl: json.items[i].productUrl,
-            discountPercentage: 100-(json.items[i].salePrice / json.items[i].msrp * 100)
+            discountPercentage: 100-(json.items[i].salePrice / json.items[i].msrp * 100),
+            oldNewFlipFlop: flipFlop
             
           }); // end Product.create
         } // end if
       } // end for
       console.log('Clearance products updated.');
+      
+      if (flipFlop === 0) {
+        Product.deleteMany({ category: 1111, oldNewFlipFlop: 1 }, (err) => {});
+      } else {
+        Product.deleteMany({ category: 1111, oldNewFlipFlop: 0 }, (err) => {});
+      }
+
       retrieveBestsellerProducts();
     });
 }
@@ -104,10 +129,18 @@ function recursiveCrunching(categoryPos, categoryArray) {
           largeImage: product.largeImage,
           productTrackingUrl: product.productTrackingUrl,
           productUrl: product.productUrl,
-          discountPercentage: product.discountPercentage
+          discountPercentage: product.discountPercentage,
+          oldNewFlipFlop: flipFlop
+
         }); // end Product.create()
     }); // end forEach
     categoryPos++;
+
+    if (flipFlop === 0) {
+      Product.deleteMany({ category: products[0].category, oldNewFlipFlop: 1 }, (err) => {});
+    } else {
+      Product.deleteMany({ category: products[0].category, oldNewFlipFlop: 0 }, (err) => {});
+    }
   
     if (categoryPos >= categoryArray.length) {
       // now update clearance products
@@ -117,14 +150,20 @@ function recursiveCrunching(categoryPos, categoryArray) {
       recursiveCrunching(categoryPos, categoryArray);
     }
   }); // end crunchData()
-
-
 }
 
 function updateDB () {
 
-  recursiveCrunching(0, Object.keys(categories));
+  today = new Date();
+  
+  console.log('Starting update, date is', today);
 
+  // flipFlop = process.env.FLIP_FLOP;
+
+  console.log('flipFlop is: ', flipFlop);
+
+  recursiveCrunching(0, Object.keys(categories));
+    
 } // end updateDB()
 
 exports.updateDB = updateDB;
