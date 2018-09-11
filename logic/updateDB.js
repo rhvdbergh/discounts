@@ -11,7 +11,7 @@ let today = new Date();
 let flipFlop = 0;
 
 // constants to change functionality
-const numIterations = 5;
+const numIterations = 1;
 
 function retrieveBestsellerProducts() {
   console.log('Now updating bestsellers.')
