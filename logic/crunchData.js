@@ -20,7 +20,6 @@ function crunchData(category, iterationCount, products, nextPage, callback) {
   
   console.log(iterationCount);
   iterationCount--;
-  console.log('Linkshare ID =', process.env.LINKSHARE_ID);
 
   let urlToFetch = nextPage ? 
       `http://api.walmartlabs.com${nextPage}`
