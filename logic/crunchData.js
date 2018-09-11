@@ -80,7 +80,10 @@ function crunchData(category, iterationCount, products, nextPage, callback) {
       } else {
         crunchData(category, iterationCount, products, json.nextPage, callback);
       }
-    });
+    })
+    .catch((err) => { // something went wrong, assuming this is the end of the list, so move on to next category
+        callback(products);
+    }); // end fetch
 
 }
 exports.crunchData = crunchData;
