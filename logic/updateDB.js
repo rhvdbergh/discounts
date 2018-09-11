@@ -10,12 +10,14 @@ const Product = require('../models/product.js');
 let today = new Date();
 let flipFlop = 0;
 
+const linkshareId = process.env.LINKSHARE_ID;
+
 // constants to change functionality
 const numIterations = 2;
 
 function retrieveBestsellerProducts() {
   console.log('Now updating bestsellers.')
-  fetch(`http://api.walmartlabs.com/v1/feeds/bestsellers?apikey=${process.env.API_KEY}&lsPublisherId=${process.env.LINKSHARE_ID}&amp;categoryId=3944`)
+  fetch(`http://api.walmartlabs.com/v1/feeds/bestsellers?apikey=${process.env.API_KEY}&lsPublisherId=${linkshareId}&amp;categoryId=3944`)
     .then(res => res.json())
     .then(json => {
       for (let i = 0; i < json.items.length; i++) 

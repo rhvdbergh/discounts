@@ -1,5 +1,7 @@
 var fetch = require('node-fetch');
 
+const linkshareId = process.env.LINKSHARE_ID;
+
 // helper method to make sure the array remains sorted
 function findPositionInSortedArray(discountPercentage, products) {
 
@@ -24,7 +26,7 @@ function crunchData(category, iterationCount, products, nextPage, callback) {
   let urlToFetch = nextPage ? 
       `http://api.walmartlabs.com${nextPage}`
       :
-      `http://api.walmartlabs.com/v1/paginated/items?category=${category}&apiKey=${process.env.API_KEY}&lsPublisherId=${process.env.LINKSHARE_ID}&format=json`;
+      `http://api.walmartlabs.com/v1/paginated/items?category=${category}&apiKey=${process.env.API_KEY}&lsPublisherId=${linkshareId}&format=json`;
   fetch(urlToFetch)
     .then(res => res.json())
     .then(json => {
