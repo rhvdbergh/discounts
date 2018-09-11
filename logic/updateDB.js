@@ -13,7 +13,7 @@ let flipFlop = 0;
 const linkshareId = process.env.LINKSHARE_ID;
 
 // constants to change functionality
-const numIterations = 1;
+const numIterations = 20;
 
 function retrieveBestsellerProducts() {
   console.log('Now updating bestsellers.')
@@ -23,6 +23,8 @@ function retrieveBestsellerProducts() {
       for (let i = 0; i < json.items.length; i++) 
         if ((json.items[i].msrp && json.items[i].salePrice) && json.items[i].availableOnline && (json.items[i].stock === 'Available')) {
         {
+
+          let productTrackingUrl = json.items[i].productTrackingUrl.replace('|LSNID|', process.env.LINKSHARE_ID);
 
           Product.create({ 
 
@@ -37,7 +39,7 @@ function retrieveBestsellerProducts() {
             thumbnailImage: json.items[i].thumbnailImage,
             mediumImage: json.items[i].mediumImage,
             largeImage: json.items[i].largeImage,
-            productTrackingUrl: json.items[i].productTrackingUrl,
+            productTrackingUrl: productTrackingUrl,
             productUrl: json.items[i].productUrl,
             discountPercentage: 100-(json.items[i].salePrice / json.items[i].msrp * 100),
             oldNewFlipFlop: flipFlop

@@ -41,6 +41,7 @@ function crunchData(category, iterationCount, products, nextPage, callback) {
             if ((json.items[i].msrp > json.items[i].salePrice) && (json.items[i].msrp !== 0) && (json.items[i].msrp !== 9999)) {
               const discountPerc = 100-(json.items[i].salePrice / json.items[i].msrp * 100);
               if (discountPerc >= 50 && discountPerc <= 90) { // range: between 50 and 90
+                let productTrackingUrl = json.items[i].productTrackingUrl.replace('|LSNID|', process.env.LINKSHARE_ID);
               let product = {
 
                     category: category,
@@ -54,7 +55,7 @@ function crunchData(category, iterationCount, products, nextPage, callback) {
                     thumbnailImage: json.items[i].thumbnailImage,
                     mediumImage: json.items[i].mediumImage,
                     largeImage: json.items[i].largeImage,
-                    productTrackingUrl: json.items[i].productTrackingUrl,
+                    productTrackingUrl: productTrackingUrl,
                     productUrl: json.items[i].productUrl,
                     discountPercentage: 100-(json.items[i].salePrice / json.items[i].msrp * 100)
               }
