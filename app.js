@@ -8,8 +8,6 @@ var mongoose = require('mongoose');
 
 const { updateDB } = require('./logic/updateDB.js');
 
-const { twitterBot } = require('./logic/twitterBot.js');
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
