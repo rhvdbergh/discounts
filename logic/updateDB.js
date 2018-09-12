@@ -13,7 +13,7 @@ let flipFlop = 0;
 const linkshareId = process.env.LINKSHARE_ID;
 
 // constants to change functionality
-const numIterations = 20;
+const numIterations = 30;
 
 function retrieveBestsellerProducts() {
   console.log('Now updating bestsellers.')
