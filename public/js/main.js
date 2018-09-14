@@ -230,4 +230,11 @@
       }
     });
 
+    $('.search').on('submit', (evt) => {
+      evt.preventDefault();
+      console.log('prevented!');
+
+    });
+    
+
 })(jQuery);
