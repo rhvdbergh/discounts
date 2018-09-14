@@ -76,7 +76,7 @@ block content
           // 
           .flex-sb-m.flex-w.p-b-35
             .flex-w
-              .rs2-select2.bo4.of-hidden.w-size12.m-t-5.m-b-5.m-r-10
+              .rs2-select2.bo4.of-hidden.w-size12.m-t-5.m-b-5.m-r-10.boxes
                 select.selection-2.sorting(name='sorting')
                   if 0 == `${sortOrder}`
                     option Biggest discount by %
@@ -84,7 +84,7 @@ block content
                   else
                     option Biggest discount by $
                     option Biggest discount by %
-              .rs2-select2.bo4.of-hidden.w-size12.m-t-5.m-b-5.m-r-10
+              .rs2-select2.bo4.of-hidden.w-size12.m-t-5.m-b-5.m-r-10.boxes
                 select.selection-2.price(name='price')
                   if `${priceRange}` == 0  
                     option Price

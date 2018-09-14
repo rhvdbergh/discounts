@@ -230,12 +230,23 @@
       }
     });
 
+    /* Search
+    ===========================================================*/
+
     $('.search').on('submit', (evt) => {
       evt.preventDefault();
       const searchTerm = $('.search_input').val();
       console.log(searchTerm);
       window.location=`/search/${searchTerm}`;
     });
+
+    /* Hide sort order and price range on search
+    ===========================================================*/
+
+    if (window.location.href.includes('search')) {
+      $('.boxes').hide();
+    }
+
     
 
 })(jQuery);
