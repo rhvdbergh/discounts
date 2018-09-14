@@ -232,8 +232,9 @@
 
     $('.search').on('submit', (evt) => {
       evt.preventDefault();
-      console.log('prevented!');
-
+      const searchTerm = $('.search_input').val();
+      console.log(searchTerm);
+      window.location=`/search/${searchTerm}`;
     });
     
 
