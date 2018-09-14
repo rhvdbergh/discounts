@@ -5,6 +5,7 @@ var router = express.Router();
 var fs = require('fs');
 
 const { categories } = require('../logic/categories.js');
+const { search } = require('../logic/search.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -59,6 +60,25 @@ router.get('/category/:category/:priceRange/:sortOrder/:pageNum', function(req, 
       });
     });
   } else res.redirect('/');
+
+  /* GET search page */
+  router.get('/search/:searchTerm', function(req, res, next) {
+
+    search(req.params.searchTerm, (retrievedProducts) => {
+      res.render('index', { 
+        title: 'DeepestDiscounts.net', 
+        products: retrievedProducts, 
+        numProducts: retrievedProducts.length,
+        pageNum: 1,
+        showingProductStart: retrievedProducts.length > 0 ? 1 : 0,
+        showingProductEnd: retrievedProducts.length,
+        category: 0,
+        sortOrder: 0,
+        priceRange: 0
+      }); // end render
+    }); // end search
+
+  });
 });
 
 module.exports = router;
